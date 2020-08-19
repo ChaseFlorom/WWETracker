@@ -2,11 +2,11 @@
 # Apartment can support many different "Elevators" that can take care of this routing to your data.
 # Require whichever Elevator you're using below or none if you have a custom one.
 #
-# require 'apartment/elevators/generic'
+ require 'apartment/elevators/generic'
 # require 'apartment/elevators/domain'
-require 'apartment/elevators/subdomain'
+#require 'apartment/elevators/subdomain'
 # require 'apartment/elevators/first_subdomain'
-# require 'apartment/elevators/host'
+ #require 'apartment/elevators/host'
 
 #
 # Apartment Configuration
@@ -24,7 +24,7 @@ Apartment.configure do |config|
   # - an array of strings representing each Tenant name.
   # - a hash which keys are tenant names, and values custom db config (must contain all key/values required in database.yml)
   #
-   config.tenant_names = lambda{ User.pluck(:subdomain) }
+   config.tenant_names = lambda{ User.pluck(:username) }
   # config.tenant_names = ['tenant1', 'tenant2']
   # config.tenant_names = {
   #   'tenant1' => {
@@ -104,6 +104,6 @@ end
 # }
 
 # Rails.application.config.middleware.use Apartment::Elevators::Domain
-Rails.application.config.middleware.use Apartment::Elevators::Subdomain
+#Rails.application.config.middleware.use Apartment::Elevators::Subdomain
 # Rails.application.config.middleware.use Apartment::Elevators::FirstSubdomain
 # Rails.application.config.middleware.use Apartment::Elevators::Host
