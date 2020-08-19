@@ -1,5 +1,14 @@
 <h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<%if current_user%>
+	<%= current_user.username%>
+<%end%>
 
-                    <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>  
+<p>
+	<%if Apartment::Tenant.current%>
+		<%=Apartment::Tenant.current%>
+	<%end%>
+</p>
+
+<p>Find me in app/views/welcome/index.html.erb</p>
+<li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>  
 
